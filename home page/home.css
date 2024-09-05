@@ -76,8 +76,8 @@ main {
     color: #ffffff;
     text-decoration: none;
     font-size: x-large;
-    padding-right: 4rem;
-    
+    padding-right: 2rem;
+    padding-left: 2rem;
 
 }
 
@@ -115,10 +115,23 @@ main {
 i {
     font-size: 2rem;
     padding: 20px;
+    color: #49A078;
 }
 i:hover{
     cursor: pointer;
     box-shadow: 5px 2px 2px black;
+}
+#file{
+    width: 80px;
+    padding-left: 28px;
+}
+#bell{
+    width: 80px;
+    padding-left: 28px;
+}
+#sett{
+    width: 80px;
+    padding-left: 28px;
 }
 
 /* Footer styling */
