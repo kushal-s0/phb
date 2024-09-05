@@ -80,6 +80,11 @@ main {
     
 
 }
+
+#group{
+    font-size: 32px;
+    color: #49A078;
+}
 .options a:hover {
     color: #49A078;
 }
