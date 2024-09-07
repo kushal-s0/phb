@@ -7,4 +7,3 @@ class Register(models.Model):
     username=models.CharField(50)
     email=models.EmailField(max_length=50)
     password=models.CharField(50)
-    confirmPassword=models.CharField(50)
