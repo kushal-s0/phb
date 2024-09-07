@@ -36,6 +36,7 @@
             <h1 id="color">Login</h1>
             <br/>
             <form action="#" method="post">
+                {% csrf_token %}
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required placeholder="Username">
                 
