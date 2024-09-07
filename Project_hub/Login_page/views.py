@@ -6,4 +6,5 @@ def studentPage(request):
     return render(request,'loginPage.html')
 
 def registerStudent(request):
+
     return render(request,'registerStudent.html')
