@@ -9,6 +9,7 @@ def studentPage(request):
         password = request.POST.get('password')
 
         checkuser = RegisterStudent.objects.filter(username = username,password = password).values
+        
         return render(request,'tp.html',{'members' :checkuser})
 
     return render(request,'loginPage.html')
@@ -22,12 +23,20 @@ def registerStudent(request):
         password = request.POST.get('password')
         confirmPassword = request.POST.get('confirmPassword')
 
-        if password == confirmPassword :
-            register = RegisterStudent(name=name ,username=username ,email=email ,password=password)
-            register.save()
-            messages.success(request, "Registration succesfull")
+        checkuser = RegisterStudent.objects.filter(username = username)
+        if(checkuser is FileNotFoundError):
+            if len(password) < 8:
+                messages.warning(request, "Password should have more than 8 characters")
+
+            elif password == confirmPassword :
+
+                register = RegisterStudent(name=name ,username=username ,email=email ,password=password)
+                register.save()
+                messages.success(request, "Registration succesfull")
+            else:
+                messages.warning(request, "Password does not match")
         else:
-            messages.warning(request, "Password does not match")
+            messages.warning(request, "Username already taken")
             
     
     return render(request,'registerStudent.html')
