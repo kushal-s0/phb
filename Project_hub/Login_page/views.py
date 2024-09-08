@@ -4,9 +4,14 @@ from django.contrib import messages
 
 # Create your views here.
 def studentPage(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
     return render(request,'loginPage.html')
 
 def registerStudent(request):
+   
     if request.method == "POST":
         name = request.POST.get('name')
         username = request.POST.get('username')
@@ -14,13 +19,12 @@ def registerStudent(request):
         password = request.POST.get('password')
         confirmPassword = request.POST.get('confirmPassword')
 
-        print(password,confirmPassword)
-
         if password == confirmPassword :
             register = RegisterStudent(name=name ,username=username ,email=email ,password=password)
             register.save()
             messages.success(request, "Registration succesfull")
         else:
-            messages.warning(request,"Error in registration:Password does not match")
+            messages.warning(request, "Password does not match")
+            
     
     return render(request,'registerStudent.html')
