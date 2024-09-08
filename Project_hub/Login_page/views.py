@@ -8,6 +8,9 @@ def studentPage(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
+        checkuser = RegisterStudent.objects.filter(username = username,password = password).values
+        return render(request,'tp.html',{'members' :checkuser})
+
     return render(request,'loginPage.html')
 
 def registerStudent(request):
