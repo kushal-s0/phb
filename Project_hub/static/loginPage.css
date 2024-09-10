@@ -61,44 +61,12 @@ header {
     flex: 1;
 }
 
-.menu-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
-.dot {
-    width: 40px;
-    height: 5px;
-    background-color: #fff;
-    border-radius: 10%;
-    margin: 3px 0;
-}
+
+
 
 /* Menu content styling */
-.menu-content {
-    display: none;
-    position: absolute;
-    top: 40px;
-    right: 0;
-    background-color: #fff;
-    color: #000;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
 
-.menu-content a {
-    display: block;
-    padding: 10px 20px;
-    color: #216869;
-    text-decoration: none;
-}
 
 .menu-content a:hover {
     background-color: #f0f0f0;
@@ -242,3 +210,69 @@ footer {
 svg{
     height: 1.5rem;
 }
+
+
+/* 
+new */
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #216869;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #49A078 ;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  .menubutton:hover {
+    background-color: #216869;
+    
+  }
+  .menubutton {
+    position: absolute;
+    left: 1rem;
+    top: -5vh;
+    width: 42px;
+    height: 60px;
+    padding-bottom: 5px;
+  }
+ 
+  
+  #main {
+    transition: margin-left .5s;
+    padding: 0px;
+  }
+
+  #dot{
+    position: absolute;
+    top: -1vh;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}}
