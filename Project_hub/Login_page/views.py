@@ -3,7 +3,7 @@ from Login_page.models import RegisterStudent
 from django.contrib import messages
 
 # Create your views here.
-def studentPage(request):
+def studentLogin(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -12,7 +12,7 @@ def studentPage(request):
         
         return render(request,'tp.html',{'members' :checkuser})
 
-    return render(request,'loginPage.html')
+    return render(request,'studentLogin.html')
 
 def registerStudent(request):
    
@@ -42,3 +42,9 @@ def registerStudent(request):
             
     
     return render(request,'registerStudent.html')
+
+def guideLogin(request):
+    return render(request,'guideLogin.html')
+def evaluatorLogin(request):
+    return render(request,'evaluatorLogin.html')
+

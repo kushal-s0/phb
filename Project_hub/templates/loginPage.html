@@ -12,9 +12,9 @@
             <div class="menu">
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <a href="#">Guide</a>
-                    <a href="#">Student</a>
-                    <a href="#">Evaluator</a>
+                    <a href="/guideLogin">Guide</a>
+                    <a href="/studentLogin">Student</a>
+                    <a href="/evaluatorLogin">Evaluator</a>
                 </div>
                   
                 <div id="main">
@@ -35,7 +35,7 @@
 
     <main>
         <div class="login-container">
-            <h1 id="color">Login</h1>
+            <h1 id="color">{% block login %}{% endblock login %}</h1>
             <br/>
             <form action="#" method="post">
                 {% csrf_token %}

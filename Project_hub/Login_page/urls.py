@@ -3,8 +3,10 @@ from django.urls import path
 from Login_page import views
 
 urlpatterns = [
-    path("",views.studentPage,name="Sudent page"),
-    path("loginPage/",views.studentPage,name="Sudent page"),
+    path("",views.studentLogin,name="studentLogin"),
+    path("studentLogin/",views.studentLogin,name="studentLogin"),
     path('registerStudent/',views.registerStudent,name="register Student"),
+    path('guideLogin/',views.guideLogin,name='guideLogin'),
+    path('evaluatorLogin/',views.evaluatorLogin,name='evaluatorLogin'),
     
 ]
