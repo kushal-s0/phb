@@ -23,8 +23,10 @@ def registerStudent(request):
         password = request.POST.get('password')
         confirmPassword = request.POST.get('confirmPassword')
 
-        checkuser = RegisterStudent.objects.filter(username = username)
-        if(checkuser is FileNotFoundError):
+        checkuser = RegisterStudent.objects.filter(username = username).count()
+        
+        if checkuser == 0:
+            
             if len(password) < 8:
                 messages.warning(request, "Password should have more than 8 characters")
 
