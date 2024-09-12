@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from Login_page.models import RegisterStudent
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
+
 
 # Create your views here.
 def studentLogin(request):
@@ -8,9 +11,16 @@ def studentLogin(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        checkuser = RegisterStudent.objects.filter(username = username,password = password).values
-        
-        return render(request,'tp.html',{'members' :checkuser})
+        checkUsername = RegisterStudent.objects.filter(username = username).exists()
+        if checkUsername:
+            checkPassword = RegisterStudent.objects.filter(username = username,password = password).exists()
+            if checkPassword:
+                print("login success")
+            else:
+                messages.warning(request, "incorrect password")
+        else:
+            messages.warning(request, "Usernam does not exist")
+        # return render(request,'tp.html',{'members' :checkuser})
 
     return render(request,'studentLogin.html')
 
@@ -44,7 +54,46 @@ def registerStudent(request):
     return render(request,'registerStudent.html')
 
 def guideLogin(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        if User.objects.filter(username = username,groups__name = 'Guide'):
+            print("entered")
+            user = authenticate(username = username,password = password)
+            if user is not None:
+                login(request,user)
+                #guide page
+                print("great success")
+            else:
+                messages.warning(request, "incorrect password")
+                print("fail")
+        else:
+            messages.warning(request, "Username not present for guide")
+            # if User.objects.filter(username = username,password = password).count() != 0:
+
+            #     return render(request,'tp.html')
+            # else:
+            #     print("fail")
+
+    #return render(request,'tp.html',{'users':user})
     return render(request,'guideLogin.html')
+
+
 def evaluatorLogin(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        if User.objects.filter(username = username,groups__name = 'Evaluator'):
+            print("entered")
+            user = authenticate(username = username,password = password)
+            if user is not None:
+                login(request,user)
+                #evaluator page
+                print("great success")
+            else:
+                messages.warning(request, "incorrect password")
+                print("fail")
+        else:
+            messages.warning(request, "Username not present for evaluator")   
     return render(request,'evaluatorLogin.html')
 
