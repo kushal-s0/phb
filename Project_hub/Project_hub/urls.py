@@ -23,5 +23,6 @@ admin.site.index_title = "Welcome to Project_hub Portal"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('Login_page.urls'))
+    path('',include('Login_page.urls')),
+    path('studentPage/',include('student.urls'))
 ]

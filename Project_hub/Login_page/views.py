@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from Login_page.models import RegisterStudent
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -16,6 +16,7 @@ def studentLogin(request):
             checkPassword = RegisterStudent.objects.filter(username = username,password = password).exists()
             if checkPassword:
                 print("login success")
+                return redirect('studentPage/')
             else:
                 messages.warning(request, "incorrect password")
         else:
