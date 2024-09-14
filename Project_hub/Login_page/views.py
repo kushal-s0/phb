@@ -15,8 +15,8 @@ def studentLogin(request):
         if checkUsername:
             checkPassword = RegisterStudent.objects.filter(username = username,password = password).exists()
             if checkPassword:
-                print("login success")
-                return redirect('studentPage/')
+                
+                return redirect('/studentPage/')
             else:
                 messages.warning(request, "incorrect password")
         else:
