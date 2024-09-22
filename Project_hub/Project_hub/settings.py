@@ -59,7 +59,7 @@ ROOT_URLCONF = 'Project_hub.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates",'student/templates'],
+        'DIRS': [BASE_DIR / "templates",'student/templates','group/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

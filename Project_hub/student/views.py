@@ -13,3 +13,9 @@ def upload(request):
 
 def resources(request):
     return render(request,'student\\resources.html')
+
+def group_file(request):
+    return render(request,'group\\file.html')
+
+def group_groups(request):
+    return render(request,'group\\groups.html')
