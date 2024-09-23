@@ -64,7 +64,7 @@ def guideLogin(request):
             if user is not None:
                 login(request,user)
                 #guide page
-                print("great success")
+                return redirect('/guide/')
             else:
                 messages.warning(request, "incorrect password")
                 print("fail")
@@ -90,7 +90,7 @@ def evaluatorLogin(request):
             if user is not None:
                 login(request,user)
                 #evaluator page
-                print("great success")
+                return redirect('/evaluator/')
             else:
                 messages.warning(request, "incorrect password")
                 print("fail")

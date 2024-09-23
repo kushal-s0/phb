@@ -59,7 +59,7 @@ ROOT_URLCONF = 'Project_hub.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates",'student/templates','group/templates'],
+        'DIRS': [BASE_DIR / "templates",'student/templates','group/templates','guide/templates','evaluator/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,5 +133,7 @@ STATICFILES_DIRS = (
      os.path.join(BASE_DIR, "static"),
      'student/static/',
      'Login_page/static/',
+     'guide/static/',
+     'evaluator/static/',
     #  '/app3/static/',
  )
