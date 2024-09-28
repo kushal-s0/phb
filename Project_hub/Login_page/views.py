@@ -3,7 +3,7 @@ from Login_page.models import RegisterStudent
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-import time
+
 
 # Create your views here.
 
@@ -19,8 +19,7 @@ def addProjectName(request):
             register.projectName = projName
             register.save()
             messages.success(request,"Registration Successful")
-            if True:
-                time.sleep(3)
+            
             
             
             
@@ -56,12 +55,14 @@ def registerStudent(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         confirmPassword = request.POST.get('confirmPassword')
+        projYear = request.POST.get('projYear')
         year = request.POST.get('year')
-        
+        year = int(year) % 2000
         branch = request.POST.get('branch')
         groupNumber = request.POST.get('groupNumber')
+
         global groupCode
-        groupCode = year+'_'+branch+'_'+groupNumber
+        groupCode = projYear+'_'+str(year)+'_'+branch+'_'+groupNumber
 
         checkuser = RegisterStudent.objects.filter(username = username).count()
         
@@ -72,7 +73,7 @@ def registerStudent(request):
 
             elif password == confirmPassword :
 
-                register = RegisterStudent(name=name ,username=username ,email=email ,password=password,year = year,branch = branch,groupNumber = groupNumber,groupCode = groupCode)
+                register = RegisterStudent(name=name ,username=username ,email=email ,password=password,year = year,branch = branch,groupNumber = groupNumber,groupCode = groupCode,projYear = projYear)
                 register.save()
                 projName = RegisterStudent.objects.filter(groupCode = groupCode).values_list()
                 

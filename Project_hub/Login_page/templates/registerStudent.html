@@ -51,12 +51,15 @@
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
 
-                <label for="year">Year:</label>
-                <select class="dropDown" name="year" id="year" required>
+                <label for="projYear">Year:</label>
+                <select class="dropDown" name="projYear" id="projYear" required>
                     <option value="" selected disabled hidden>--select--</option>
-                    <option value="SY">Second Year:Mini Project</option>
-                    <option value="TY">Third Year:Minor Project</option>
-                    <option value="LY">Last Year:Major Project</option>
+                    <option value="MI1">Second Year:Mini Project:SEM 1</option>
+                    <option value="MN1">Third Year:Minor Project:SEM 1</option>
+                    <option value="MA1">Last Year:Major Project:SEM 1</option>
+                    <option value="MI2">Second Year:Mini Project:SEM 2</option>
+                    <option value="MN2">Third Year:Minor Project:SEM 2</option>
+                    <option value="MA2">Last Year:Major Project:SEM 2</option>
                 </select>
 
                 <label for="branch">Branch:</label>
@@ -68,6 +71,9 @@
                     <option value="EXTC">EXTC</option>
                     
                 </select>
+
+                <label for="year">Achademic Year:</label>
+                <input type="number" name="year" id="year" min="1900" max="2099" step="1" value="2024">
 
                 <label for="groupNumber">Group Number:</label>
                 <input type="text" id="groupNumber" name="groupNumber" required>
