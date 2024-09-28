@@ -14,11 +14,9 @@ def addProjectName(request):
     if  request.method == 'GET':
         projectName = request.POST.get('projectName')
         print(groupCode)
-        register = RegisterStudent.objects.filter(groupCode = groupCode)
-        print(projectName)        
-        register.projectName = projectName
-        print(register.projectName)
-        register.save()
+        register = RegisterStudent.objects.filter(groupCode = groupCode).values()
+        print(register)
+        
     return render(request,'addProjectName.html')
 
 def studentLogin(request):
