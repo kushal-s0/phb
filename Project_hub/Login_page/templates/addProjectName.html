@@ -51,10 +51,11 @@
             <form method="get" action="/addProjectName/" >
                 {% csrf_token %}
                 <h3 label for="project name">Enter your Project Name:</label></h3>
-                <input type="text" id="group_code" name="projectName" required placeholder="Project Name">
+                <input type="text" id="group_code" name="projectName" required placeholder="Project Name" default:"blank">
                 <br>
                 <button type="submit">Submit</button>
             </form><br>
+            <p class="login-link">Already have an account? <a href="/">Login</a></p>
         </div>
         </main>
     </body>

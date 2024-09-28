@@ -3,19 +3,28 @@ from Login_page.models import RegisterStudent
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-
+import time
 
 # Create your views here.
 
 
 def addProjectName(request):
     
-    print(request.method)
+    
     if  request.method == 'GET':
-        projectName = request.POST.get('projectName')
-        print(groupCode)
-        register = RegisterStudent.objects.filter(groupCode = groupCode).values()
-        print(register)
+        projName = request.GET.get('projectName')
+        request.method = 'COMPLETED'  
+        if projName != None:      
+            register = RegisterStudent.objects.filter(groupCode = groupCode)[0]
+            register.projectName = projName
+            register.save()
+            messages.success(request,"Registration Successful")
+            if True:
+                time.sleep(3)
+            
+            
+            
+        
         
     return render(request,'addProjectName.html')
 
@@ -40,6 +49,7 @@ def studentLogin(request):
 
 def registerStudent(request):
     
+    print(request.method)
     if request.method == "POST":
         name = request.POST.get('name')
         username = request.POST.get('username')
@@ -69,13 +79,18 @@ def registerStudent(request):
                 projectName = projName[0][8]
                 if(projectName == 'blank'):
                     return redirect('/addProjectName')
+                else:
+                    projN = RegisterStudent.objects.filter(groupCode = groupCode)[0]
+                    temp = projN.projectName
+                    register = RegisterStudent.objects.filter(username = username)[0]
+                    register.projectName = temp
+                    register.save()
+
                 messages.success(request, "Registration succesfull")
             else:
                 messages.warning(request, "Password does not match")
         else:
             messages.warning(request, "Username already taken")
-            
-    
     return render(request,'registerStudent.html')
 
 def guideLogin(request):
