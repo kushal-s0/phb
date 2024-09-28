@@ -2,18 +2,21 @@
 {% block title %}Evaluator{% endblock title %}
 {%load static%}
 {% block css %}  
-  <link rel="stylesheet" href="{% static '\home.css' %}">  
+  <link rel="stylesheet" href="{% static '\group.css' %}">  
 {% endblock css %}
 
 {% block mainBody %}
 <div class="rigthSidebar">
-  
+  <a href="groups/" class="groups">
+    <i class="fa-solid fa-users-line"></i>
+  </a>
+  <a href="addGroup/" class="add_groups">
+    <i class="fa-solid fa-user-plus"></i>
+  </a>
 </div>
 <div class="mainBody">
   
 </div>
-<div class="leftSidebar">
 
-</div>
 {% endblock mainBody %}
 
