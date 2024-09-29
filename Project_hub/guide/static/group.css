@@ -116,14 +116,16 @@ i:hover{
 
 
 
-.mainBody{
+.mainBodyGuide{
+
     height: 85vh;
     width: 70vw;    
     background: #dce1de;
     overflow: auto;
+    
 
 }
-.mainBody p{
+.mainBodyGuide p{
     padding: 1rem 1.5rem 1rem;
 }
 
