@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start</title>
-</head>
-<body>
-    <p>hi</p>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Evaluator{% endblock title %}
+{%load static%}
+{% block css %}  
+  <link rel="stylesheet" href="{% static '\home.css' %}">  
+{% endblock css %}
+
+{% block mainBody %}
+<div class="rigthSidebar">
+  
+</div>
+<div class="mainBody">
+  
+</div>
+<div class="leftSidebar">
+
+</div>
+{% endblock mainBody %}
+

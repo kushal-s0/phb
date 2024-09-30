@@ -6,6 +6,27 @@ from django.contrib.auth import authenticate,login,logout
 
 
 # Create your views here.
+
+
+def addProjectName(request):
+    
+    
+    if  request.method == 'GET':
+        projName = request.GET.get('projectName')
+        request.method = 'COMPLETED'  
+        if projName != None:      
+            register = RegisterStudent.objects.filter(groupCode = groupCode)[0]
+            register.projectName = projName
+            register.save()
+            messages.success(request,"Registration Successful")
+            
+            
+            
+            
+        
+        
+    return render(request,'addProjectName.html')
+
 def studentLogin(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -26,13 +47,22 @@ def studentLogin(request):
     return render(request,'studentLogin.html')
 
 def registerStudent(request):
-   
+    
+    print(request.method)
     if request.method == "POST":
         name = request.POST.get('name')
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
         confirmPassword = request.POST.get('confirmPassword')
+        projYear = request.POST.get('projYear')
+        year = request.POST.get('year')
+        year = int(year) % 2000
+        branch = request.POST.get('branch')
+        groupNumber = request.POST.get('groupNumber')
+
+        global groupCode
+        groupCode = projYear+'_'+str(year)+'_'+branch+'_'+groupNumber
 
         checkuser = RegisterStudent.objects.filter(username = username).count()
         
@@ -43,15 +73,25 @@ def registerStudent(request):
 
             elif password == confirmPassword :
 
-                register = RegisterStudent(name=name ,username=username ,email=email ,password=password)
+                register = RegisterStudent(name=name ,username=username ,email=email ,password=password,year = year,branch = branch,groupNumber = groupNumber,groupCode = groupCode,projYear = projYear)
                 register.save()
+                projName = RegisterStudent.objects.filter(groupCode = groupCode).values_list()
+                
+                projectName = projName[0][8]
+                if(projectName == 'blank'):
+                    return redirect('/addProjectName')
+                else:
+                    projN = RegisterStudent.objects.filter(groupCode = groupCode)[0]
+                    temp = projN.projectName
+                    register = RegisterStudent.objects.filter(username = username)[0]
+                    register.projectName = temp
+                    register.save()
+
                 messages.success(request, "Registration succesfull")
             else:
                 messages.warning(request, "Password does not match")
         else:
             messages.warning(request, "Username already taken")
-            
-    
     return render(request,'registerStudent.html')
 
 def guideLogin(request):
