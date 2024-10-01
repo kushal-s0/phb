@@ -7,7 +7,7 @@
     margin: 20px;
     padding: 20px;
     height: 75vh;
-    width: 90vw;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -35,7 +35,7 @@ form{
 }
 /* Table styling */
 .mainBodyTable {
-    width: 80%;
+    width: 100%;
     border: 0.1rem solid #9eaba3;
     padding: 2rem;
     border-radius: 2rem;
