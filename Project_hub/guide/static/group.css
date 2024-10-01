@@ -73,7 +73,14 @@ main{
     flex-direction: row;
 }
 
-
+.mainBodyGuide {
+    position: absolute;
+    height: 85vh;
+    width: 70vw;
+    background: #dce1de;
+    overflow: auto;
+    left: 35vh;
+}
 
 /* right side bar styling */
 .rigthSidebar{

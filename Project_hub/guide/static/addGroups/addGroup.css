@@ -1,13 +1,23 @@
 /* addGroup.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-
-
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 /* Main body styling */
 .mainBody {
     margin: 20px;
     padding: 20px;
     height: 75vh;
-    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -27,7 +37,7 @@
     font-weight: bold;
     margin-bottom: 20px;
     color: #1f2421;
-    border-left: 0.7rem solid #49a078;
+    
 }
 form{
     height: 90%;
@@ -71,7 +81,7 @@ form{
 .mainBodyTable input[type="submit"] {
     padding: 10px 20px;
     background-color: #49a078;
-    color: #9eaba3;
+    color: #ffffff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
