@@ -6,7 +6,6 @@ class RegisterStudent(models.Model):
     name = models.CharField(max_length=50)
     username = models.CharField(max_length=50,primary_key=True)
     email = models.EmailField(max_length=50)
-    password = models.CharField(max_length=50)
     groupCode = models.CharField(max_length=10)
     year = models.CharField(max_length=5,default='00')
     branch = models.CharField(max_length=10,default='00')

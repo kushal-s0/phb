@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from Login_page.models import RegisterStudent
 from django.contrib import messages
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 from django.contrib.auth import authenticate,login,logout
 
 
@@ -32,17 +32,29 @@ def studentLogin(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        checkUsername = RegisterStudent.objects.filter(username = username).exists()
-        if checkUsername:
-            checkPassword = RegisterStudent.objects.filter(username = username,password = password).exists()
-            if checkPassword:
-                
+        if User.objects.filter(username = username,groups__name = 'Student'):
+            print("entered")
+            user = authenticate(username = username,password = password)
+            if user is not None:
+                login(request,user)
+                #guide page
                 return redirect('/studentPage/')
             else:
                 messages.warning(request, "incorrect password")
+                print("fail")
         else:
-            messages.warning(request, "Usernam does not exist")
-        # return render(request,'tp.html',{'members' :checkuser})
+            messages.warning(request, "Username not present for Student")
+        # checkUsername = RegisterStudent.objects.filter(username = username).exists()
+        # if checkUsername:
+        #     checkPassword = RegisterStudent.objects.filter(username = username,password = password).exists()
+        #     if checkPassword:
+                
+        #         return redirect('/studentPage/')
+        #     else:
+        #         messages.warning(request, "incorrect password")
+        # else:
+        #     messages.warning(request, "Usernam does not exist")
+        # # return render(request,'tp.html',{'members' :checkuser})
 
     return render(request,'studentLogin.html')
 
@@ -53,6 +65,10 @@ def registerStudent(request):
         name = request.POST.get('name')
         username = request.POST.get('username')
         email = request.POST.get('email')
+        print(email)
+        email = str(email)
+        print(email)
+        print('@somaiya.edu' in email)
         password = request.POST.get('password')
         confirmPassword = request.POST.get('confirmPassword')
         projYear = request.POST.get('projYear')
@@ -65,31 +81,48 @@ def registerStudent(request):
         groupCode = projYear+'_'+str(year)+'_'+branch+'_'+groupNumber
 
         checkuser = RegisterStudent.objects.filter(username = username).count()
+        checkuser2 = RegisterStudent.objects.filter(email = email).count()
         
         if checkuser == 0:
+            if checkuser2 == 0:
             
-            if len(password) < 8:
-                messages.warning(request, "Password should have more than 8 characters")
+                if len(password) < 8:
+                    messages.warning(request, "Password should have more than 8 characters")
+                elif ('@somaiya.edu' in email) == False:
+                    messages.warning(request, "Email should have '@somaiya.edu'")
 
-            elif password == confirmPassword :
+                elif password == confirmPassword :
 
-                register = RegisterStudent(name=name ,username=username ,email=email ,password=password,year = year,branch = branch,groupNumber = groupNumber,groupCode = groupCode,projYear = projYear)
-                register.save()
-                projName = RegisterStudent.objects.filter(groupCode = groupCode).values_list()
-                
-                projectName = projName[0][8]
-                if(projectName == 'blank'):
-                    return redirect('/addProjectName')
-                else:
-                    projN = RegisterStudent.objects.filter(groupCode = groupCode)[0]
-                    temp = projN.projectName
-                    register = RegisterStudent.objects.filter(username = username)[0]
-                    register.projectName = temp
+                    register = RegisterStudent(name=name ,username=username ,email=email ,year = year,branch = branch,groupNumber = groupNumber,groupCode = groupCode,projYear = projYear)
                     register.save()
 
-                messages.success(request, "Registration succesfull")
+                    user = User.objects.create_user(
+                        username=username,
+                        email=email,
+                        password=password
+                    )
+                    user.save()
+
+                    group  = Group.objects.get(name = 'Student')
+                    user.groups.add(group)
+
+                    projName = RegisterStudent.objects.filter(groupCode = groupCode).values_list()
+                    
+                    projectName = projName[0][8]
+                    if(projectName == 'blank'):
+                        return redirect('/addProjectName')
+                    else:
+                        projN = RegisterStudent.objects.filter(groupCode = groupCode)[0]
+                        temp = projN.projectName
+                        register = RegisterStudent.objects.filter(username = username)[0]
+                        register.projectName = temp
+                        register.save()
+
+                    messages.success(request, "Registration succesfull")
+                else:
+                    messages.warning(request, "Password does not match")
             else:
-                messages.warning(request, "Password does not match")
+                messages.warning(request, "Email already taken")
         else:
             messages.warning(request, "Username already taken")
     return render(request,'registerStudent.html')
