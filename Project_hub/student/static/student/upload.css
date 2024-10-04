@@ -85,7 +85,7 @@ main {
     font-size: 32px;
     color: #49A078;
 }
-.options a:hover {
+.options a:hover:not(#upload) {
     color: #49A078;
     box-shadow: 5px 2px 2px black;
 }
@@ -123,9 +123,9 @@ i:hover{
     box-shadow: 5px 2px 2px black;
 }
 
-#files{
+#code{
     width: 80px;
-    padding-left: 28px;
+    padding-left: 28px;    
 }
 #database{
     width: 80px;
@@ -135,7 +135,11 @@ i:hover{
     width: 80px;
     padding-left: 24px;
 }
-#cloud{
+#additional{
+    width: 80px;
+    padding-left: 24px;
+}
+#view{
     width: 80px;
     padding-left: 21px;
 }
@@ -175,3 +179,151 @@ footer {
 .footer-links a:hover {
     text-decoration: underline;
 }
+
+a{
+    text-decoration: none;
+}
+
+.mainBody {
+    margin: 20px;
+    padding: 20px;
+    height: 75vh;
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+/* Header styling */
+.mainBodyHead {
+    padding: 1.5rem 7rem 1.5rem;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #1f2421;
+    border-left: 0.7rem solid #49a078;
+}
+form{
+    height: 90%;
+    justify-content: space-between;
+}
+/* Table styling */
+.mainBodyTable {
+    width: 85%;
+    border: 0.1rem solid #9eaba3;
+    padding: 2rem;
+    border-radius: 2rem;
+    height: 70%;
+    position: relative;
+}
+
+.mainBodyTable form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Checkbox and label styling */
+.fileOption {
+    display: flex;
+    align-items: center;
+}
+
+.fileOption label {
+    display: flex;
+    flex-direction: row;
+    gap: 7rem; /* Adjust the gap as needed */
+}
+
+.fileOption p {
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    
+}
+
+/* Submit button styling */
+.mainBodyTable input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #49a078;
+    /* color: #9eaba3; */
+    color:#fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.mainBodyTable input[type="submit"]:hover {
+    background-color: #299160;
+}
+
+.edit-icons {
+    position: absolute;
+    top: -5px; 
+    right: 20px; 
+}
+
+.edit-icons i{
+    font-size: 1.5rem;
+    color: #49A078;
+    padding: 10px;
+}
+
+.edit-icons i:hover {
+    box-shadow: none !important; /* No box-shadow */
+    color: #299160;   
+}
+
+#view_link{
+    color:#49A078;
+    font-size: 1.2rem;
+    padding: 5px;
+}
+
+#view_link:hover{
+    box-shadow: none !important;
+    color: #299160;
+}
+
+#file-table {
+    border-collapse: collapse; 
+    width: 100%;
+}
+
+#file-table tr {
+    display: table-row; 
+}
+
+#file-table td {
+    text-align: left;
+    display: table-cell;
+    padding: 8px; 
+}
+
+#file-table tbody tr td {
+    border-bottom: 1px solid #9eaba3 !important; 
+}
+
+#file-table tbody tr:nth-child(odd) {
+    background-color:#dce1de ; 
+} 
+
+/* .messages {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.messages ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.messages li {
+    color: green; /* Change the color as needed */
+/* } */ 

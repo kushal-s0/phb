@@ -85,7 +85,7 @@ main {
     font-size: 32px;
     color: #49A078;
 }
-.options a:hover {
+.options a:hover:not(#search) {
     color: #49A078;
     box-shadow: 5px 2px 2px black;
 }
