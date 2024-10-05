@@ -46,13 +46,15 @@
         <i class="fa-solid fa-folder-minus no-shadow" id="remove-files" title="Remove Files"></i>
         </div>
             <hr>
-            <div class="fileOptions">
-                <input type="file" id="file-input" name="files" hidden multiple>
-                <table id="file-table">
-                    <tbody id="file-list">
+            <div class="fileoptiondiv">
+                <div class="fileOptions">
+                    <input type="file" id="file-input" name="files" hidden multiple>
+                    <table id="file-table">
+                        <tbody id="file-list">
                         <!-- File names will be appended here as rows -->
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <input type="hidden" name="groupCode" value="{{ group_code }}">
             <input type="submit" value="Submit">
