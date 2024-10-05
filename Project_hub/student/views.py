@@ -20,21 +20,21 @@ def group_file(request):
 def group_groups(request):
     return render(request,'group\\groups.html')
 
-def upload(request):
-    return render(request, 'student/upload.html')
+def code(request):
+    return render(request, 'uploads\\code.html')
 
 # Folder View Page
 def document_view(request):
-    return render(request, 'student/document.html')
+    return render(request, 'uploads\\document.html')
 
 # Additional View Page
 def additional_view(request):
-    return render(request, 'student/additional.html')
+    return render(request, 'uploads\\additional.html')
 
 # Database View Page
 def database_view(request):
-    return render(request, 'student/database.html')
+    return render(request, 'uploads\\database.html')
 
 #View Details Page
 def view_details(request):
-    return render(request, 'student/view.html')
+    return render(request, 'uploads\\view.html')
