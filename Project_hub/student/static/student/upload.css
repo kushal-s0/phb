@@ -311,7 +311,11 @@ form{
 #file-table tbody tr:nth-child(odd) {
     background-color:#dce1de ; 
 } 
-
+.fileoptiondiv{
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+}
 /* .messages {
     border: 1px solid #ccc;
     padding: 10px;
