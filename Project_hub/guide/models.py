@@ -9,7 +9,7 @@ class guide_groups(models.Model):
     projectName = models.CharField(max_length=60)
 
     def __str__(self) -> str:
-        return self.guide_name.first_name
+        return self.guide_name.first_name + " " + self.guide_name.last_name+"->"+self.projectName+"-"+self.groupCode
     
     class Meta:
         verbose_name_plural = "Guide_group"

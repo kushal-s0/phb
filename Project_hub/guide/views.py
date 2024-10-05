@@ -9,7 +9,11 @@ def start(request):
     return render(request,'guide.html')
 
 def groups(request):
-    return render(request,'groups\\groups.html')
+    currentUser = request.user
+
+    data = guide_groups.objects.filter(guide_name = currentUser)
+    data_dict = {'data':data}
+    return render(request,'groups\\groups.html',data_dict)
 
 def addGroup(request):
     currentUser = request.user

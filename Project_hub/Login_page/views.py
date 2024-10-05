@@ -108,7 +108,7 @@ def registerStudent(request):
 
                     projName = RegisterStudent.objects.filter(groupCode = groupCode).values_list()
                     
-                    projectName = projName[0][8]
+                    projectName = projName[0][7]
                     if(projectName == 'blank'):
                         return redirect('/addProjectName')
                     else:
