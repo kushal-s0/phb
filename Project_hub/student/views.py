@@ -1,7 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 # from student.models import UploadedFile
 from Login_page.models import RegisterStudent
+from .models import CodeFile,DatabaseFile,DocumentFile,AdditionalFile
 
 # Create your views here.
 def homePage(request):
@@ -37,4 +38,14 @@ def database_view(request):
 
 #View Details Page
 def view_details(request):
-    return render(request, 'uploads\\view.html')
+    # databaseFile =DatabaseFile.objects.all()
+    # codeFile =CodeFile.objects.all()
+    # documentFile =DocumentFile.objects.all()
+    # additionalFile = AdditionalFile.objects.all()
+    return render(request, 'view\\view.html')
+
+
+# def view_folder(request, folder_id):
+#     folder = get_object_or_404(DocumentFile, id=folder_id)
+#     files = folder.files.all()  # Get all files in this folder
+#     return render(request, 'view_folder.html', {'folder': folder, 'files': files})
