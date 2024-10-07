@@ -139,3 +139,10 @@ STATICFILES_DIRS = (
      'evaluator/static/',
     #  '/app3/static/',
  )
+
+
+import os
+
+# Ensure these settings are present
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

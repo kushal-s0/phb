@@ -6,6 +6,9 @@ from Login_page.models import RegisterStudent
 class CodeFile(models.Model):
     group_code = models.ForeignKey(RegisterStudent, on_delete=models.CASCADE, related_name="code_files")
     file = models.FileField(upload_to="uploads/code/")
+    file_type = models.CharField(max_length=10,null=True, blank=True)
+    name = models.CharField(max_length=255)
+    content = models.TextField(default='', blank=True)
     upload_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

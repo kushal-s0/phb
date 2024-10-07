@@ -246,7 +246,7 @@ form{
 }
 
 /* Submit button styling */
-.mainBodyTable input[type="submit"] {
+.uploadbtn {
     padding: 10px 20px;
     background-color: #49a078;
     /* color: #9eaba3; */

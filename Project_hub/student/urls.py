@@ -20,6 +20,9 @@ urlpatterns = [
     path('upload/additional/', views.additional_view, name='additional'),
     path('upload/database/', views.database_view, name='database'),
     path('upload/view/', views.view_details, name='view'),
+    path('upload/view/<int:file_id>/', views.display_file_content, name='display_file_content'),
+    path('upload/edit/<int:file_id>/', views.edit_code_file, name='edit_file'),
+    path('upload_code_file/', views.upload_code_file, name='upload_code_file'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
