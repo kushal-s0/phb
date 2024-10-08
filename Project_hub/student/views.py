@@ -1,9 +1,8 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect
 from django.contrib import messages
 # from student.models import UploadedFile
 from Login_page.models import RegisterStudent
-from .models import CodeFile,DatabaseFile,DocumentFile,AdditionalFile
-from .forms import CodeFileForm,FileEditForm
+
 # Create your views here.
 def homePage(request):
     print("working")
@@ -37,52 +36,66 @@ def database_view(request):
     return render(request, 'uploads\\database.html')
 
 #View Details Page
-def view_details(request):
-    databasefile =DatabaseFile.objects.all()
-    codefile =CodeFile.objects.all()
-    documentfile =DocumentFile.objects.all()
-    additionalfile = AdditionalFile.objects.all()
-    return render(request, 'view\\view.html',{'databaseFile': databasefile, 'documentFile': documentfile,'codeFile': codefile,'additionalFile': additionalfile})
+# def view_details(request):
+#     return render(request, 'uploads\\view.html')
 
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import CodeFile, DatabaseFile, DocumentFile, AdditionalFile
+from .forms import CodeFileForm, DatabaseFileForm, DocumentFileForm, AdditionalFileForm
 
-# def view_folder(request, folder_id):
-#     folder = get_object_or_404(DocumentFile, id=folder_id)
-#     files = folder.files.all()  # Get all files in this folder
-#     return render(request, 'view_folder.html', {'folder': folder, 'files': files})
-
-
-def edit_code_file(request, code_file_id):
-    code_file = get_object_or_404(CodeFile, id=code_file_id)
-
-    if request.method == 'POST':
-        form = CodeFileForm(request.POST, request.FILES, instance=code_file)
-        if form.is_valid():
+def upload_file(request, file_type):
+    if request.method == "POST":
+        form = None
+        if file_type == 'code':
+            form = CodeFileForm(request.POST, request.FILES)
+        elif file_type == 'database':
+            form = DatabaseFileForm(request.POST, request.FILES)
+        elif file_type == 'document':
+            form = DocumentFileForm(request.POST, request.FILES)
+        elif file_type == 'additional':
+            form = AdditionalFileForm(request.POST, request.FILES)
+        
+        if form and form.is_valid():
             form.save()
-            return redirect('upload_code_file')
-    else:
-        form = CodeFileForm(instance=code_file)
+            return redirect('view_files', file_type=file_type)
+    
+    form = CodeFileForm() if file_type == 'code' else DatabaseFileForm() if file_type == 'database' else DocumentFileForm() if file_type == 'document' else AdditionalFileForm()
+    return render(request, 'uploadss\\upload_file.html', {'form': form, 'file_type': file_type})
 
-    return render(request, 'view\\edit_file.html', {'form': form, 'code_file': code_file})
+def view_files(request, file_type):
+    file_models = {
+        'code': CodeFile,
+        'database': DatabaseFile,
+        'document': DocumentFile,
+        'additional': AdditionalFile,
+    }
+    files = file_models[file_type].objects.all()
+    return render(request, 'uploadss\\view_files.html', {'files': files, 'file_type': file_type})
 
+def edit_file(request, file_type, file_id):
+    file_models = {
+        'code': CodeFile,
+        'database': DatabaseFile,
+        'document': DocumentFile,
+        'additional': AdditionalFile,
+    }
+    file_instance = get_object_or_404(file_models[file_type], id=file_id)
+    form = None
+    
+    if request.method == "POST":
+        if file_type == 'code':
+            form = CodeFileForm(request.POST, request.FILES, instance=file_instance)
+        elif file_type == 'database':
+            form = DatabaseFileForm(request.POST, request.FILES, instance=file_instance)
+        elif file_type == 'document':
+            form = DocumentFileForm(request.POST, request.FILES, instance=file_instance)
+        elif file_type == 'additional':
+            form = AdditionalFileForm(request.POST, request.FILES, instance=file_instance)
 
-def display_file_content(request, codefile_id):
-    codefile = get_object_or_404(CodeFile, id=codefile_id)
-    return render(request, 'display_file.html', {
-        'file_content': codefile.content,
-        'file_name': codefile.name,
-        'file_id': codefile.id,
-    })
+        if form and form.is_valid():
+            form.save()
+            return redirect('view_files', file_type=file_type)
 
-def upload_code_file(request):
-    if request.method == 'POST':
-        code_file_form = CodeFileForm(request.POST, request.FILES,prefix='code')
-        if code_file_form.is_valid():
-            code_file_form.save()
-            return redirect('upload_code_file')
-        else:
-            print(code_file_form.errors)
-    else:
-        code_file_form = CodeFileForm(prefix='code')
-
-    code_files = CodeFile.objects.all()  # Retrieve all code files to display
-    return render(request, 'uploads\\code.html', {'code_file_form': code_file_form, 'code_files': code_files})
+    form = CodeFileForm(instance=file_instance) if file_type == 'code' else DatabaseFileForm(instance=file_instance) if file_type == 'database' else DocumentFileForm(instance=file_instance) if file_type == 'document' else AdditionalFileForm(instance=file_instance)
+    
+    return render(request, 'uploadss\\edit_file.html', {'form': form, 'file': file_instance, 'file_type': file_type})
